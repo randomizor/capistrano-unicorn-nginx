@@ -33,7 +33,7 @@ namespace :unicorn do
     on roles :app do
       sudo_upload! template('unicorn_init.erb'), unicorn_initd_file
       execute :chmod, '+x', unicorn_initd_file
-      sudo 'update-rc.d', '-f', fetch(:unicorn_service), 'defaults'
+      sudo 'chkconfig', fetch(:unicorn_service), 'on'
     end
   end
 
